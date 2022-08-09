@@ -1,0 +1,28 @@
+{
+  "name": "team_generator",
+  "version": "1.0.0",
+  "description": "OOP and testing for Module 10 Challenge",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest --verbose test/*",
+    "start": "node index.js",
+    "reset": "node reset.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zoot83/Team_Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zoot83/Team_Generator/issues"
+  },
+  "homepage": "https://github.com/Zoot83/Team_Generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
