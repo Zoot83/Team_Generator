@@ -65,10 +65,10 @@ function generateMarkdown(data) {
     
   <main>
   
-    <section class="py-5 text-center container">
+    <section class="py-5 text-center container header">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">Meet My Team</h1>
+          <h1 class="fw-light"">Meet My Team</h1>
         </div>
       </div>
     </section>
