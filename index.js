@@ -3,8 +3,11 @@ const fs = require('fs');
 const Manager = require("./lib/manager");
 const Intern = require("./lib/intern");
 const Engineer = require("./lib/engineer");
+const generateMarkdown = require("./src/generaterHTML");
 
 const team = [];
+const engineers = [];
+const interns = [];
 
 const questionsForManager = [
     {
@@ -106,34 +109,55 @@ const questionsForIntern = [
    ];
 
 
-function init() {
+async function init() {
 
-    let moreMembers = true;
-    inquirer.prompt(questionsForManager)
+    let moreMembers;
+    await inquirer.prompt(questionsForManager)
     .then((answers) => {
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-        if(answers.role ==="I don't want to add any more."){
-            moreMembers = false;
-        }
-    
+        team.push(manager); 
+        moreMembers = answers.role;   
     });
 
-    while(moreMembers){
-        if(answers.role === "Engineer"){
-            inquirer.prompt(questionsForEngineer)
+    while(moreMembers != "I don't want to add any more."){
+        if(moreMembers === "Engineer"){
+            await inquirer.prompt(questionsForEngineer)
             .then((answers)=>{
                 const member= new Engineer(answers.name, answers.id, answers.email, answers.gitHub)
+                engineers.push(member);
+                moreMembers=answers.role;
             })
-        }
-        if(answers.role === "Intern"){
-            inquirer.prompt(questionsForIntern)
+        }else if(moreMembers === "Intern"){
+            await inquirer.prompt(questionsForIntern)
             .then((answers)=>{
-
+                const member= new Intern(answers.name, answers.id, answers.email, answers.school)
+                interns.push(member);
+                moreMembers=answers.role;
             })
         }
     }
+    sortTeam(engineers, interns);
+    writeToFile('./dist/index.html', team);
+    
 }
 
+function sortTeam(engArray, internArray){
+    if(engArray.length > 0){
+        engArray.forEach(element => team.push(element));
+    } 
+    if(internArray.length>0){
+        internArray.forEach(element => team.push(element));
+    }
+}
+
+
+function writeToFile(fileName, data) {
+    generateHTML = generateMarkdown(data);
+    fs.writeFile(fileName,generateHTML, (err) => 
+    err ? console.log(err): console.log("Successfully created index.html")
+    );
+    
+}
 
 // Function call to initialize app
 init();
