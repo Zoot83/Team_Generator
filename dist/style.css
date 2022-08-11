@@ -5,3 +5,12 @@
     color: white;
     font-size: 50px;
 }
+
+.card-img{
+    background: blue;
+    color: white;
+}
+
+.head-name{
+    text-align: center;
+}

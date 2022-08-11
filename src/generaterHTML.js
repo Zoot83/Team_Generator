@@ -28,7 +28,7 @@ function generateTeam(data){
           <div class="col">
             <div class="card shadow-sm">
                 <div class="card-img">
-                    <h1>${element.getName()}</h1>
+                    <h1 class="head-name">${element.getName()}</h1>
                     <h2><img class="card-img-top" src="../assets/${roleImage}.png">${element.getRole()}</h2>
                 </div>
               <div class="card-body">
